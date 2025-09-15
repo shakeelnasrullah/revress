@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:revress/app_colors.dart';
+import 'package:revress/dashboard/dashboard_screen.dart';
 import 'package:revress/login/login_bloc.dart';
 import 'package:revress/login/login_event.dart';
 import 'package:revress/login/login_status.dart';
@@ -21,6 +22,8 @@ class LoginScreen extends StatelessWidget {
             listener: (context, state) {
               if (state.formStatus is SubmissionSuccess) {
                 // Navigate to home screen on success
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DashboardScreen()));
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Login successful!')),
                 );
@@ -156,7 +159,7 @@ class LoginScreen extends StatelessWidget {
               ),
               checkColor: AppColors.white,
               activeColor: AppColors.primary,
-              fillColor: MaterialStateProperty.all(AppColors.primary),
+              fillColor: WidgetStateProperty.all(AppColors.primary),
             ),
             Text(
               "Remember Me",
