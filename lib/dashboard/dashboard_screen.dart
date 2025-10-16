@@ -108,12 +108,12 @@ class _DashboardScreenState extends State<DashboardScreen>
         pageController.jumpToPage(tabIndex);
       },
       //padding: const EdgeInsets.only(left: 4, right: 4, bottom: 4),
-      /*cornerRadius: const BorderRadius.only(
-        topLeft: Radius.circular(8),
-        topRight: Radius.circular(8),
-        bottomRight: Radius.circular(16),
-        bottomLeft: Radius.circular(16),
-      ),*/
+      cornerRadius: const BorderRadius.only(
+        topLeft: Radius.circular(16),
+        topRight: Radius.circular(16),
+        bottomRight: Radius.circular(0),
+        bottomLeft: Radius.circular(0),
+      ),
       shadowColor: AppColors.secondary,
       elevation: 10,
     );

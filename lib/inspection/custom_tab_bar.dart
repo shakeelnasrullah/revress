@@ -1,0 +1,92 @@
+// widgets/custom_tab_bar.dart
+import 'package:flutter/material.dart';
+import 'package:revress/inspection/tab_status.dart';
+
+import 'package:revress/inspection/type/inspection_type.dart';
+import 'package:revress/inspection/vehicle_type/vechicle_type_screen.dart';
+import 'custom_tab_widget.dart';
+
+class CustomTabBar extends StatelessWidget {
+  final List<CustomTab> tabs;
+  final int currentIndex;
+  final ValueChanged<int> onTabChanged;
+  final PageController pageController;
+
+  const CustomTabBar({
+    Key? key,
+    required this.tabs,
+    required this.currentIndex,
+    required this.onTabChanged,
+    required this.pageController,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // Tab Bar
+        Container(
+          height: 100,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 4,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Row(
+            children:
+                tabs.map((tab) {
+                  return Expanded(
+                    child: CustomTabWidget(
+                      tab: tab,
+                      isActive: currentIndex == tab.index,
+                      onTap: () {
+                        onTabChanged(tab.index);
+                        pageController.animateToPage(
+                          tab.index,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                    ),
+                  );
+                }).toList(),
+          ),
+        ),
+
+        // PageView
+        Expanded(
+          child: PageView(
+            controller: pageController,
+            onPageChanged: onTabChanged,
+            children:
+                tabs.map((tab) {
+                  return _buildPageContent(tab);
+                }).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPageContent(CustomTab tab) {
+
+    switch(tab.index){
+      case 0 :
+        return InspectionTypeScreen();
+      case 1:
+        return VehicleTypeScreen();
+      case 2:
+        return InspectionTypeScreen();
+      case 3:
+        return VehicleTypeScreen();
+      default: return InspectionTypeScreen();
+
+    }
+
+  }
+}

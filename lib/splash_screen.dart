@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:revress/app_colors.dart';
 import 'package:revress/dashboard/dashboard_screen.dart';
+import 'package:revress/inspection/new_appointment_screen.dart';
 import 'package:revress/login/login_screen.dart';
 
 
@@ -18,7 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
       //Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-      Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
+      //Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => NewAppointmentScreen()));
     });
   }
 

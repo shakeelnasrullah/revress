@@ -85,14 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 BuildContext context,
                 int index,
                 ) {
-              return ListTile(
-                title: Text('Item $index'),
-                subtitle: Text("This is item number $index"),
-                leading: CircleAvatar(child: Text("$index")),
-                onTap: () {
-                  print('Item ${index + 1} tapped');
-                },
-              );
+              return _buildCustomCardItem(index);
             }, childCount: 50),
           ),
         ],
@@ -155,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      '@sarahj',
+                      '@sarah',
                       style: TextStyle(
                         color: Colors.white.withAlpha((255 * 0.8).round()),
                         fontSize: 14,
@@ -273,6 +266,135 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildCustomCardItem(int index) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16),
+          onTap: () {
+            print('Item ${index + 1} tapped');
+            // Add navigation or other action here
+          },
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Circular Avatar with better styling
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.blue.shade200,
+                      width: 2,
+                    ),
+                  ),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.primaries[index % Colors.primaries.length].shade100,
+                    foregroundColor: Colors.primaries[index % Colors.primaries.length].shade800,
+                    child: Text(
+                      '${index + 1}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+
+                SizedBox(width: 16),
+
+                // Content section
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'User Name ${index + 1}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+
+                      SizedBox(height: 4),
+
+                      Text(
+                        '@username${index + 1}',
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 14,
+                        ),
+                      ),
+
+                      SizedBox(height: 8),
+
+                      Text(
+                        'This is a detailed description for item number ${index + 1}. '
+                            'It can contain more information about the user or content.',
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 14,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+
+                      SizedBox(height: 12),
+
+                      // Additional info or actions
+                      Row(
+                        children: [
+                          Icon(Icons.star, color: Colors.amber, size: 16),
+                          SizedBox(width: 4),
+                          Text(
+                            '4.${index % 10}',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 14,
+                            ),
+                          ),
+
+                          SizedBox(width: 16),
+
+                          Icon(Icons.access_time, color: Colors.grey[500], size: 16),
+                          SizedBox(width: 4),
+                          Text(
+                            '${index + 1}h ago',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 14,
+                            ),
+                          ),
+
+                          Spacer(),
+
+                          Icon(
+                            Icons.favorite_border,
+                            color: Colors.grey[500],
+                            size: 20,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
