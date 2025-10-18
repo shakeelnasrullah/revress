@@ -18,7 +18,7 @@ class _TabScreenState extends State<NewAppointmentScreen> {
 
   final List<CustomTab> _tabs = [
     CustomTab(
-      title: 'Inspection Type',
+      title: 'Inspection',
       icon: "assets/images/checked_tab.png",
       status: TabStatus.completed,
       index: 0,
@@ -30,13 +30,13 @@ class _TabScreenState extends State<NewAppointmentScreen> {
       index: 1,
     ),
     CustomTab(
-      title: 'Payment',
+      title: 'Body Type',
       icon: "assets/images/default_tab.png",
       status: TabStatus.pending,
       index: 2,
     ),
     CustomTab(
-      title: 'Review',
+      title: 'Car Detail',
       icon: "assets/images/default_tab.png",
       status: TabStatus.pending,
       index: 3,

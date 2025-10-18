@@ -4,6 +4,7 @@ import 'package:revress/inspection/tab_status.dart';
 
 import 'package:revress/inspection/type/inspection_type.dart';
 import 'package:revress/inspection/vehicle_type/vechicle_type_screen.dart';
+import 'body_type/body_type_screen.dart';
 import 'custom_tab_widget.dart';
 
 class CustomTabBar extends StatelessWidget {
@@ -81,7 +82,7 @@ class CustomTabBar extends StatelessWidget {
       case 1:
         return VehicleTypeScreen();
       case 2:
-        return InspectionTypeScreen();
+        return BodyTypeScreen();
       case 3:
         return VehicleTypeScreen();
       default: return InspectionTypeScreen();

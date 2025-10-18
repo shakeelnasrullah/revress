@@ -79,6 +79,15 @@ flutter:
      - assets/images/default_tab.png
      - assets/images/own_car.png
      - assets/images/seller_car.png
+     - assets/images/coupe.png
+     - assets/images/hatchback.png
+     - assets/images/luxury.png
+     - assets/images/off_road.png
+     - assets/images/sedan.png
+     - assets/images/sports.png
+     - assets/images/suv.png
+     - assets/images/truck.png
+     - assets/images/van.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
