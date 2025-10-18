@@ -31,7 +31,7 @@ class _InspectionTypeScreenState extends State<InspectionTypeScreen> {
                 ),
                 Text(
                   "For those who have physical problems",
-                  style: TextStyle(color: Colors.grey[600], fontSize: 16),
+                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
                 ),
                 SizedBox(height: 10),
               ],
@@ -52,7 +52,7 @@ class _InspectionTypeScreenState extends State<InspectionTypeScreen> {
                 ),
                 Text(
                   "For those who want computerized inspection",
-                  style: TextStyle(color: Colors.grey[600], fontSize: 16),
+                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
                 ),
                 SizedBox(height: 10),
               ],

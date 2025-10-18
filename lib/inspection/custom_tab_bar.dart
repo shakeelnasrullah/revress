@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:revress/inspection/tab_status.dart';
 
 import 'package:revress/inspection/type/inspection_type.dart';
+import 'package:revress/inspection/vehicle_detail/vehicle_detail_screen.dart';
 import 'package:revress/inspection/vehicle_type/vechicle_type_screen.dart';
 import 'body_type/body_type_screen.dart';
 import 'custom_tab_widget.dart';
@@ -27,7 +28,7 @@ class CustomTabBar extends StatelessWidget {
       children: [
         // Tab Bar
         Container(
-          height: 100,
+          height: 80,
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
@@ -84,7 +85,7 @@ class CustomTabBar extends StatelessWidget {
       case 2:
         return BodyTypeScreen();
       case 3:
-        return VehicleTypeScreen();
+        return VehicleDetailScreen();
       default: return InspectionTypeScreen();
 
     }

@@ -20,13 +20,13 @@ class _TabScreenState extends State<NewAppointmentScreen> {
     CustomTab(
       title: 'Inspection',
       icon: "assets/images/checked_tab.png",
-      status: TabStatus.completed,
+      status: TabStatus.active,
       index: 0,
     ),
     CustomTab(
       title: 'Owner/Seller',
       icon: "assets/images/active_tab.png",
-      status: TabStatus.active,
+      status: TabStatus.pending,
       index: 1,
     ),
     CustomTab(
@@ -91,9 +91,9 @@ class _TabScreenState extends State<NewAppointmentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Custom Tab Bar'),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
+        title: const Text('New Appointment'),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
       ),
       body: CustomTabBar(
         tabs: _tabs,

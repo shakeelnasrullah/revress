@@ -47,13 +47,14 @@ class CustomTabWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 120,
+        height: 80,
         width: tabWidth,
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        padding: const EdgeInsets.symmetric( horizontal: 8),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             // Icon with status-based coloring
+            const SizedBox(height: 6),
             Image.asset(
               _getIcon(tab.status, tab.icon),
               //color: _getIconColor(tab.status, isActive),

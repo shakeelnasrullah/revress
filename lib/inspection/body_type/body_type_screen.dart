@@ -58,55 +58,51 @@ class _BodyTypeScreenState extends State<BodyTypeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // Grid View
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisExtent: 180,
-                crossAxisCount: 2, // 2 columns
-                crossAxisSpacing: 16.0,
-                mainAxisSpacing: 16.0,
-                childAspectRatio: 0.7, // Adjust card aspect ratio
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          // Grid View
+          Expanded(
+
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisExtent: 180,
+                  crossAxisCount: 2, // 2 columns
+                  crossAxisSpacing: 16.0,
+                  mainAxisSpacing: 16.0,
+                  childAspectRatio: 0.7, // Adjust card aspect ratio
+                ),
+                itemCount: bodyTypes.length,
+                itemBuilder: (context, index) {
+
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        // Toggle selection - if already selected, deselect it
+                        if (selectedIndex == index) {
+                          selectedIndex = null;
+                        } else {
+                          selectedIndex = index;
+                        }
+                      });
+
+                      // You can also add your custom logic here when item is tapped
+                      print('Selected body type: ${bodyTypes[index].name}');
+                    },
+                    child: BodyTypeListItem(
+                      product: bodyTypes[index],
+                      isSelected: selectedIndex == index,
+                    ),
+                  );
+                },
               ),
-              itemCount: bodyTypes.length,
-              itemBuilder: (context, index) {
-
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      // Toggle selection - if already selected, deselect it
-                      if (selectedIndex == index) {
-                        selectedIndex = null;
-                      } else {
-                        selectedIndex = index;
-                      }
-                    });
-
-                    // You can also add your custom logic here when item is tapped
-                    print('Selected body type: ${bodyTypes[index].name}');
-                  },
-                  child: BodyTypeListItem(
-                    product: bodyTypes[index],
-                    isSelected: selectedIndex == index,
-                  ),
-                );
-              },
             ),
           ),
-        ),
-
-        // Footer
-        /*Container(
-          width: double.infinity,
-          padding: EdgeInsets.all(16.0),
-          color: Colors.grey[100],
-          child: FooterWidget(),
-        ),*/
-      ],
+        ],
+      ),
     );
   }
 

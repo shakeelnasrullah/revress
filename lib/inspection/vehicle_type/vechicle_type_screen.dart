@@ -31,7 +31,7 @@ class _VehicleTypeScreenState extends State<VehicleTypeScreen> {
                 ),
                 Text(
                   "Get your personal car inspection",
-                  style: TextStyle(color: Colors.grey[600], fontSize: 16),
+                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
                 ),
                 SizedBox(height: 10),
               ],
@@ -52,7 +52,7 @@ class _VehicleTypeScreenState extends State<VehicleTypeScreen> {
                 ),
                 Text(
                   "Get someone else's car inspection",
-                  style: TextStyle(color: Colors.grey[600], fontSize: 16),
+                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
                 ),
                 SizedBox(height: 10),
               ],
