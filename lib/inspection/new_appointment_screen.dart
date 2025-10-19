@@ -41,6 +41,12 @@ class _TabScreenState extends State<NewAppointmentScreen> {
       status: TabStatus.pending,
       index: 3,
     ),
+    CustomTab(
+      title: 'User Detail',
+      icon: "assets/images/default_tab.png",
+      status: TabStatus.pending,
+      index: 4,
+    ),
   ];
 
   @override

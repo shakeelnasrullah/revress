@@ -25,7 +25,8 @@ class AppColors {
   static const Color onError = Color(0xFFE11111);
 
   static const Color lightGray = Color(0xff999999);
-  static const Color darkGray = Color(0xff333333);
+  static const Color darkBG = Color(0xff363636);
+  static const Color darkGray = Color(0xff272727);
   static const Color black = Color(0xff000000);
   static const Color white = Color(0xffffffff);
 

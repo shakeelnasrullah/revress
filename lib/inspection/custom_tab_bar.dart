@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:revress/inspection/tab_status.dart';
 
 import 'package:revress/inspection/type/inspection_type.dart';
+import 'package:revress/inspection/user_detail/user_detail_screen.dart';
 import 'package:revress/inspection/vehicle_detail/vehicle_detail_screen.dart';
 import 'package:revress/inspection/vehicle_type/vechicle_type_screen.dart';
 import 'body_type/body_type_screen.dart';
@@ -26,7 +27,7 @@ class CustomTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Tab Bar
+        // Tab Bar - Horizontally scrollable with SingleChildScrollView
         Container(
           height: 80,
           decoration: BoxDecoration(
@@ -39,24 +40,24 @@ class CustomTabBar extends StatelessWidget {
               ),
             ],
           ),
-          child: Row(
-            children:
-                tabs.map((tab) {
-                  return Expanded(
-                    child: CustomTabWidget(
-                      tab: tab,
-                      isActive: currentIndex == tab.index,
-                      onTap: () {
-                        onTabChanged(tab.index);
-                        pageController.animateToPage(
-                          tab.index,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
-                      },
-                    ),
-                  );
-                }).toList(),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: tabs.map((tab) {
+                return CustomTabWidget(
+                  tab: tab,
+                  isActive: currentIndex == tab.index,
+                  onTap: () {
+                    onTabChanged(tab.index);
+                    pageController.animateToPage(
+                      tab.index,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                );
+              }).toList(),
+            ),
           ),
         ),
 
@@ -86,6 +87,8 @@ class CustomTabBar extends StatelessWidget {
         return BodyTypeScreen();
       case 3:
         return VehicleDetailScreen();
+        case 4:
+        return UserDetailScreen();
       default: return InspectionTypeScreen();
 
     }

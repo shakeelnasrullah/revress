@@ -20,7 +20,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 3), () {
       //Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
       //Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
-      Navigator.push(context, MaterialPageRoute(builder: (context) => NewAppointmentScreen()));
+      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()),);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NewAppointmentScreen()));
     });
   }
 
@@ -32,12 +33,12 @@ class _SplashScreenState extends State<SplashScreen> {
         height: double.infinity,
         color: AppColors.background,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 60),
           child: Column(crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
                 "assets/images/app_icon_white.png",
-                width: 300,
+                width: 250,
                 height: 150,
                 fit: BoxFit.fill,
               ),
