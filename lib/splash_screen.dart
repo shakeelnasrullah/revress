@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:revress/app_colors.dart';
+import 'package:revress/dashboard/dashboard_screen.dart';
+import 'package:revress/inspection/new_appointment_screen.dart';
+import 'package:revress/inspection/user_detail/dummy_view.dart';
 import 'package:revress/login/login_screen.dart';
 
 
@@ -16,7 +19,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      //Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      //Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
+      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DummyView()),);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NewAppointmentScreen()));
     });
   }
 
@@ -28,12 +34,12 @@ class _SplashScreenState extends State<SplashScreen> {
         height: double.infinity,
         color: AppColors.background,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 60),
           child: Column(crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
                 "assets/images/app_icon_white.png",
-                width: 300,
+                width: 250,
                 height: 150,
                 fit: BoxFit.fill,
               ),

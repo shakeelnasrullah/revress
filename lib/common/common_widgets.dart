@@ -11,7 +11,7 @@ Widget requireTextLabel(String name) {
   );
 }
 
-Widget genericTextField(TextEditingController controller, String hintText, Icon icon){
+Widget genericTextField(TextEditingController controller, String? hintText, Icon? icon){
   return
     TextField(
       controller: controller,
@@ -26,4 +26,37 @@ Widget genericTextField(TextEditingController controller, String hintText, Icon 
         ),
       ),
     );
+}
+
+Widget buildDropdown({
+  required String? value,
+  required List<String> items,
+  required String hint,
+  required Function(String?) onChanged,
+}) {
+  return Container(
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.grey.shade300),
+      borderRadius: BorderRadius.circular(8),
+      // color: Colors.white
+    ),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: DropdownButton<String>(
+        value: value,
+        //hint: Text(hint),
+        isExpanded: true,
+        dropdownColor: Colors.white,
+        underline: SizedBox(), // Remove default underline
+        borderRadius: BorderRadius.circular(8),
+        items: items.map((String item) {
+          return DropdownMenuItem<String>(
+            value: item,
+            child: Text(item),
+          );
+        }).toList(),
+        onChanged: onChanged,
+      ),
+    ),
+  );
 }

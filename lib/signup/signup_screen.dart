@@ -164,7 +164,7 @@ Widget showPhoneNumber(TextEditingController _phone_controller, PhoneNumber numb
 }
 
 Widget rectangleThemeBtn(String name, Function onClick) {
-  return Container(
+  return SizedBox(
     width: double.infinity,
     height: 50,
     child: ElevatedButton(
@@ -188,7 +188,7 @@ Widget rectangleThemeBtn(String name, Function onClick) {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Space between image and text
-          Text('Sign Up', style: TextStyle(fontSize: 16, color: Colors.white)),
+          Text('Sign In', style: TextStyle(fontSize: 16, color: Colors.white)),
         ],
       ),
     ),

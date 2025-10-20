@@ -31,3 +31,25 @@ Widget rectangleThemeBtn( String title,  Function onClick) {
   );
 }
 
+Widget buildRoundedButton({
+  required String text,
+  required Color backgroundColor,
+  required VoidCallback onPressed,
+}) {
+  return ElevatedButton(
+    onPressed: onPressed,
+    style: ElevatedButton.styleFrom(
+      backgroundColor: backgroundColor,
+      foregroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      padding: EdgeInsets.symmetric(vertical: 15),
+    ),
+    child: Text(
+      text,
+      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+    ),
+  );
+}
+
