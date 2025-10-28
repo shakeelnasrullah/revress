@@ -35,56 +35,71 @@ class _VehicleTypeScreenState extends State<VehicleTypeScreen> {
         onTap: (){ setState(() {
           _selectedVehicleType = selectedID;
         });},
-        child:  Stack(
-          children : [
-            Card(
-            color: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-              side: BorderSide(
-                color: isSelected ? Colors.blue : Colors.transparent,
-                width: isSelected ? 2 : 0,
+        child:  AnimatedContainer(
+          duration: Duration(milliseconds: 200),
+          child: Stack(
+            children : [
+              Card(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+                side: BorderSide(
+                  color: isSelected ? Colors.blue : Colors.transparent,
+                  width: isSelected ? 2 : 0,
+                ),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
+                  gradient: isSelected
+                      ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Colors.blue.withOpacity(0.1), Colors.white],
+                  )
+                      : null,
+                ),
+                child: Column(
+                  children: [
+                    Image.asset(image, fit: BoxFit.fill,),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      detail,
+                      style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                ),
               ),
             ),
-            child: Column(
-              children: [
-                Image.asset(image, fit: BoxFit.fill,),
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  detail,
-                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
-                ),
-                SizedBox(height: 10),
-              ],
-            ),
-          ),
-            if (isSelected)
-              Positioned(
-                top: 8,
-                right: 8,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(4),
-                    child: Icon(
-                      Icons.check,
-                      color: Colors.white,
-                      size: 16,
+              if (isSelected)
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(4),
+                      child: Icon(
+                        Icons.check,
+                        color: Colors.white,
+                        size: 16,
+                      ),
                     ),
                   ),
                 ),
-              ),
-        ])
+          ]),
+        )
     );}
 
 

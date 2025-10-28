@@ -76,86 +76,101 @@ class _PaymentScreenState extends State<PaymentScreen> {
           _selectedPaymentMethod = paymentId;
         });
       },
-      child: Card(
-        elevation: 4,
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side: BorderSide(
-            color: isSelected ? Colors.blue : Colors.transparent,
-            width: isSelected ? 2 : 0,
+      child: AnimatedContainer( duration:
+        Duration(milliseconds: 200),
+        child: Card(
+          elevation: 4,
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(
+              color: isSelected ? Colors.blue : Colors.transparent,
+              width: isSelected ? 2 : 0,
+            ),
           ),
-        ),
-        child: Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: Row(
-                children: [
-                  Card(
-                    elevation: 2,
-                    color: color,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Image.asset(
-                        image,
-                        height: 40,
-                        width: 40,
-                        fit: BoxFit.contain,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.0),
+              gradient: isSelected
+                  ? LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Colors.blue.withOpacity(0.1), Colors.white],
+              )
+                  : null,
+            ),
+            child: Stack(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: Row(
+                    children: [
+                      Card(
+                        elevation: 2,
+                        color: color,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Image.asset(
+                            image,
+                            height: 40,
+                            width: 40,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              title,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            Text(
+                              detail,
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Tick icon for selected item
+                if (isSelected)
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(4),
+                        child: Icon(
+                          Icons.check,
+                          color: Colors.white,
+                          size: 16,
+                        ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          title,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        Text(
-                          detail,
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              ],
             ),
-            // Tick icon for selected item
-            if (isSelected)
-              Positioned(
-                top: 8,
-                right: 8,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(4),
-                    child: Icon(
-                      Icons.check,
-                      color: Colors.white,
-                      size: 16,
-                    ),
-                  ),
-                ),
-              ),
-          ],
+          ),
         ),
       ),
     );

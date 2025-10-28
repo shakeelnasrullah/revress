@@ -77,32 +77,48 @@ class _InspectionTypeScreenState extends State<InspectionTypeScreen> {
         });},
         child:  Stack(
             children : [
-              Card(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  side: BorderSide(
-                    color: isSelected ? Colors.blue : Colors.transparent,
-                    width: isSelected ? 2 : 0,
+              AnimatedContainer(
+                duration: Duration(milliseconds: 200),
+                child: Card(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    side: BorderSide(
+                      color: isSelected ? Colors.blue : Colors.transparent,
+                      width: isSelected ? 2 : 0,
+                    ),
                   ),
-                ),
-                child: Column(
-                  children: [
-                    Image.asset(image, fit: BoxFit.fill,),
-                    Text(
-                      title,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.0),
+                      gradient: isSelected
+                          ? LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.blue.withOpacity(0.1), Colors.white],
+                      )
+                          : null,
                     ),
-                    Text(
-                      detail,
-                      style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                    child: Column(
+                      children: [
+                        Image.asset(image, fit: BoxFit.fill,),
+                        Text(
+                          title,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          detail,
+                          style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                        ),
+                        SizedBox(height: 10),
+                      ],
                     ),
-                    SizedBox(height: 10),
-                  ],
+                  ),
                 ),
               ),
               if (isSelected)
