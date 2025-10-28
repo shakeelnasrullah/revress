@@ -36,8 +36,8 @@ Widget buildDropdown({
 }) {
   return Container(
     decoration: BoxDecoration(
-      border: Border.all(color: Colors.grey.shade300),
-      borderRadius: BorderRadius.circular(8),
+      border: Border.all(color: Colors.black),
+      borderRadius: BorderRadius.circular(4),
       // color: Colors.white
     ),
     child: Padding(

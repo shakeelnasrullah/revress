@@ -1,5 +1,6 @@
 // widgets/custom_tab_bar.dart
 import 'package:flutter/material.dart';
+import 'package:revress/inspection/payment/payment_screen.dart';
 import 'package:revress/inspection/tab_status.dart';
 
 import 'package:revress/inspection/type/inspection_type.dart';
@@ -43,20 +44,21 @@ class CustomTabBar extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: tabs.map((tab) {
-                return CustomTabWidget(
-                  tab: tab,
-                  isActive: currentIndex == tab.index,
-                  onTap: () {
-                    onTabChanged(tab.index);
-                    pageController.animateToPage(
-                      tab.index,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
+              children:
+                  tabs.map((tab) {
+                    return CustomTabWidget(
+                      tab: tab,
+                      isActive: currentIndex == tab.index,
+                      onTap: () {
+                        onTabChanged(tab.index);
+                        pageController.animateToPage(
+                          tab.index,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      },
                     );
-                  },
-                );
-              }).toList(),
+                  }).toList(),
             ),
           ),
         ),
@@ -77,9 +79,8 @@ class CustomTabBar extends StatelessWidget {
   }
 
   Widget _buildPageContent(CustomTab tab) {
-
-    switch(tab.index){
-      case 0 :
+    switch (tab.index) {
+      case 0:
         return InspectionTypeScreen();
       case 1:
         return VehicleTypeScreen();
@@ -87,11 +88,12 @@ class CustomTabBar extends StatelessWidget {
         return BodyTypeScreen();
       case 3:
         return VehicleDetailScreen();
-        case 4:
+      case 4:
         return UserDetailScreen();
-      default: return InspectionTypeScreen();
-
+      case 5:
+        return PaymentScreen();
+      default:
+        return InspectionTypeScreen();
     }
-
   }
 }

@@ -126,7 +126,7 @@ class AppointmentListview extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: isSelected ? Colors.white : Colors.green[50],
+                      color: isSelected ? Colors.white : Colors.green,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -134,7 +134,7 @@ class AppointmentListview extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w500,
-                        color: isSelected ? Colors.orangeAccent : Colors.green[800],
+                        color: isSelected ? Colors.orangeAccent : Colors.white,
                       ),
                     ),
                   ),

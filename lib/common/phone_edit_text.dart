@@ -6,8 +6,8 @@ class PhoneEditText {
    static Widget showPhoneNumber(
       TextEditingController _phone_controller,
       PhoneNumber number, {
-        double borderRadius = 8.0,
-        Color borderColor = Colors.grey,
+        double borderRadius = 4.0,
+        Color borderColor = Colors.black,
         Color focusedBorderColor = Colors.blue,
       }) {
     return InternationalPhoneNumberInput(

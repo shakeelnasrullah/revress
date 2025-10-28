@@ -46,6 +46,11 @@ class _TabScreenState extends State<NewAppointmentScreen> {
       icon: "assets/images/default_tab.png",
       status: TabStatus.pending,
       index: 4,
+    ),CustomTab(
+      title: 'Payment',
+      icon: "assets/images/default_tab.png",
+      status: TabStatus.pending,
+      index: 5,
     ),
   ];
 

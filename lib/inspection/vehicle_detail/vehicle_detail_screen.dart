@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:revress/app_colors.dart';
 
-
 class VehicleDetailScreen extends StatefulWidget {
   const VehicleDetailScreen({super.key});
 
@@ -27,99 +26,103 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              // Form Fields
+              _buildLabel("Select Car Year"),
+              SizedBox(height: 4),
+              // Year Dropdown
+              _buildDropdown(
+                value: selectedYear,
+                items: years,
+                hint: 'Select Year',
+                onChanged: (value) {
+                  setState(() {
+                    selectedYear = value;
+                  });
+                },
+              ),
+              SizedBox(height: 20),
+              _buildLabel("Select Country"),
+              SizedBox(height: 4),
+              // Country Dropdown
+              _buildDropdown(
+                value: selectedCountry,
+                items: countries,
+                hint: 'Select Country',
+                onChanged: (value) {
+                  setState(() {
+                    selectedCountry = value;
+                  });
+                },
+              ),
+              SizedBox(height: 20),
+              _buildLabel("Select Brand Model"),
+              SizedBox(height: 4),
+              // Brand Model Dropdown
+              _buildDropdown(
+                value: selectedBrandModel,
+                items: brandModels,
+                hint: 'Select Brand Model',
+                onChanged: (value) {
+                  setState(() {
+                    selectedBrandModel = value;
+                  });
+                },
+              ),
+              SizedBox(height: 20),
+              _buildLabel("Select Variant"),
+              SizedBox(height: 4),
+              // Variant Dropdown
+              _buildDropdown(
+                value: selectedVariant,
+                items: variants,
+                hint: 'Select Variant',
+                onChanged: (value) {
+                  setState(() {
+                    selectedVariant = value;
+                  });
+                },
+              ),
 
-        child: Column(
-          children: [
-            _buildLabel("Select Car Year"),
-            SizedBox(height: 4),
+              // Add some extra space before buttons
+              SizedBox(height: 40),
 
-            // Year Dropdown
-            _buildDropdown(
-              value: selectedYear,
-              items: years,
-              hint: 'Select Year',
-              onChanged: (value) {
-                setState(() {
-                  selectedYear = value;
-                });
-              },
-            ),
-            SizedBox(height: 20),
-            _buildLabel("Select Country"),
-            SizedBox(height: 4),
-            // Country Dropdown
-            _buildDropdown(
-              value: selectedCountry,
-              items: countries,
-              hint: 'Select Country',
-              onChanged: (value) {
-                setState(() {
-                  selectedCountry = value;
-                });
-              },
-            ),
-            SizedBox(height: 20),
-            _buildLabel("Select Brand Model"),
-            SizedBox(height: 4),
-            // Brand Model Dropdown
-            _buildDropdown(
-              value: selectedBrandModel,
-              items: brandModels,
-              hint: 'Select Brand Model',
-              onChanged: (value) {
-                setState(() {
-                  selectedBrandModel = value;
-                });
-              },
-            ),
-            SizedBox(height: 20),
-            _buildLabel("Select Variant"),
-            SizedBox(height: 4),
-            // Variant Dropdown
-            _buildDropdown(
-              value: selectedVariant,
-              items: variants,
-              hint: 'Select Variant',
-              onChanged: (value) {
-                setState(() {
-                  selectedVariant = value;
-                });
-              },
-            ),
-
-            // Spacer to push buttons to bottom
-            Spacer(),
-
-            // Buttons Row
-            Row(
-              children: [
-                // Reset Button
-                Expanded(
-                  child: _buildRoundedButton(
-                    text: 'Reset',
-                    backgroundColor: AppColors.darkGray,
-                    onPressed: () {
-                      _resetAll();
-                    },
+              // Buttons Row
+              Row(
+                children: [
+                  // Reset Button
+                  Expanded(
+                    child: _buildRoundedButton(
+                      text: 'Reset',
+                      backgroundColor: AppColors.darkGray,
+                      onPressed: () {
+                        _resetAll();
+                      },
+                    ),
                   ),
-                ),
-                SizedBox(width: 15),
+                  SizedBox(width: 15),
 
-                // Submit Button
-                Expanded(
-                  child: _buildRoundedButton(
-                    text: 'Submit',
-                    backgroundColor: AppColors.secondary,
-                    onPressed: () {
-                      _submitForm();
-                    },
+                  // Submit Button
+                  Expanded(
+                    child: _buildRoundedButton(
+                      text: 'Submit',
+                      backgroundColor: AppColors.secondary,
+                      onPressed: () {
+                        _submitForm();
+                      },
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+
+              // Extra padding at the bottom for better scrolling
+              SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
@@ -135,8 +138,6 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
     );
   }
 
-
-
   // Reusable dropdown widget
   Widget _buildDropdown({
     required String? value,
@@ -146,15 +147,13 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
+        border: Border.all(color: Colors.black),
         borderRadius: BorderRadius.circular(8),
-       // color: Colors.white
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: DropdownButton<String>(
           value: value,
-          //hint: Text(hint),
           isExpanded: true,
           dropdownColor: Colors.white,
           underline: SizedBox(), // Remove default underline
