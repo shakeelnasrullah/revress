@@ -1,9 +1,11 @@
 // widgets/custom_tab_bar.dart
 import 'package:flutter/material.dart';
 import 'package:revress/inspection/payment/payment_screen.dart';
+import 'package:revress/inspection/receipt/receipt_screen.dart';
 import 'package:revress/inspection/tab_status.dart';
 
 import 'package:revress/inspection/type/inspection_type.dart';
+import 'package:revress/inspection/user_detail/dummy_view.dart';
 import 'package:revress/inspection/user_detail/user_detail_screen.dart';
 import 'package:revress/inspection/vehicle_detail/vehicle_detail_screen.dart';
 import 'package:revress/inspection/vehicle_type/vechicle_type_screen.dart';
@@ -92,6 +94,9 @@ class CustomTabBar extends StatelessWidget {
         return UserDetailScreen();
       case 5:
         return PaymentScreen();
+      case 6:
+        return ReceiptScreen();
+        //return DummyView();
       default:
         return InspectionTypeScreen();
     }

@@ -2,6 +2,8 @@
 
 // screens/tab_screen.dart
 import 'package:flutter/material.dart';
+import 'package:revress/common/custom_toolbar.dart';
+import 'package:revress/common/oval_bottom_toolbar.dart';
 import 'package:revress/inspection/custom_tab_bar.dart';
 import 'package:revress/inspection/tab_status.dart';
 
@@ -51,6 +53,11 @@ class _TabScreenState extends State<NewAppointmentScreen> {
       icon: "assets/images/default_tab.png",
       status: TabStatus.pending,
       index: 5,
+    ),CustomTab(
+      title: 'Receipt',
+      icon: "assets/images/default_tab.png",
+      status: TabStatus.pending,
+      index: 6,
     ),
   ];
 
@@ -101,10 +108,24 @@ class _TabScreenState extends State<NewAppointmentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+     /* appBar: AppBar(
         title: const Text('New Appointment'),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
+      ),*/
+      appBar: CustomToolbar(
+        title: "My Custom Toolbar",
+        backgroundColor: Colors.blue,
+        /*actions: [
+          IconButton(
+            icon: Icon(Icons.search, color: Colors.white),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.more_vert, color: Colors.white),
+            onPressed: () {},
+          ),
+        ],*/
       ),
       body: CustomTabBar(
         tabs: _tabs,

@@ -52,6 +52,7 @@ dev_dependencies:
   circle_nav_bar: ^2.2.0
   intl: ^0.18.1
   dotted_border: ^3.1.0
+  custom_clippers: ^2.0.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -94,6 +95,8 @@ flutter:
      - assets/images/google_pay.png
      - assets/images/mastercard_pay.png
      - assets/images/samsung_pay.png
+     - assets/images/badge.png
+     - assets/images/car_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
