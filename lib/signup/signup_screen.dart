@@ -93,8 +93,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           SizedBox(height: 30),
                           //rememberMeRow(),
                           rectangleThemeBtn("Sign Up",  () {
-                            print("Sign Up");
-                           // Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreen()));
+                           //Navigator.pop(context);
                           }),
                         ],
                       ),
@@ -109,16 +108,18 @@ class _SignupScreenState extends State<SignupScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Don't have an account?",
+                            "Already Have an Account?",
                             style: TextStyle(
                               fontSize: 14,
                               color: AppColors.lightGray,
                             ),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                             child: Text(
-                              "Sign Up",
+                              "Login",
                               style: TextStyle(
                                 fontSize: 14,
                                 color: AppColors.primary,
@@ -188,7 +189,7 @@ Widget rectangleThemeBtn(String name, Function onClick) {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Space between image and text
-          Text('Sign In', style: TextStyle(fontSize: 16, color: Colors.white)),
+          Text(name, style: TextStyle(fontSize: 16, color: Colors.white)),
         ],
       ),
     ),

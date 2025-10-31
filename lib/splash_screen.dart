@@ -19,10 +19,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
-      //Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-      //Navigator.push(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
+      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
       //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DummyView()),);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NewAppointmentScreen()));
+      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NewAppointmentScreen()));
     });
   }
 

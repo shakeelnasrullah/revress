@@ -60,3 +60,25 @@ Widget buildDropdown({
     ),
   );
 }
+
+Widget dottedDivider({
+  Color color = Colors.grey,
+  double height = 1,
+  double dashWidth = 4,
+  double dashSpace = 4,
+}) {
+  return Row(
+    children: List.generate(25, (index) =>
+        Expanded(
+          child: Container(
+            height: height,
+            margin: EdgeInsets.symmetric(horizontal: dashSpace / 2),
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(height / 2),
+            ),
+          ),
+        ),
+    ),
+  );
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:revress/app_colors.dart';
+import 'package:revress/common/common_widgets.dart';
 
 import 'multi_point_bottom_card.dart';
 
@@ -25,14 +26,6 @@ class ReceiptScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.red,
                         shape: BoxShape.circle, // Circular image
-                        //border: Border.all(color: Colors.white, width: 2),
-                        /*boxShadow: [
-                          BoxShadow(
-                            color: Colors.red,
-                            blurRadius: 2,
-                            offset: Offset(0, 2),
-                          ),
-                        ],*/
                       ),
                       child: ClipOval(child: Image.asset("assets/images/car_logo.png", fit: BoxFit.scaleDown,),
                       ),),)
@@ -133,7 +126,14 @@ class ReceiptScreen extends StatelessWidget {
               SizedBox(height: 24),
 
               // Divider
-              Divider(color: Colors.grey[300], height: 1, indent: 2,),
+
+              dottedDivider(
+                //color: Colors.redAccent,
+                height: 2,
+                dashWidth: 8,
+                dashSpace: 4,
+              ),
+              //Divider(color: Colors.grey[300], height: 1, indent: 2,),
               SizedBox(height: 24),
 
               // Details Section
@@ -242,17 +242,17 @@ class ReceiptScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              side: BorderSide(color: Colors.blue),
+              side: BorderSide(color: AppColors.primary),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.share, color: Colors.blue, size: 20),
+                Icon(Icons.share, color: AppColors.primary, size: 20),
                 SizedBox(width: 8),
                 Text(
                   'Share',
                   style: TextStyle(
-                    color: Colors.blue,
+                    color: AppColors.primary,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -267,7 +267,7 @@ class ReceiptScreen extends StatelessWidget {
               // Download functionality
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
+              backgroundColor: AppColors.primary,
               padding: const EdgeInsets.symmetric(vertical: 16),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:revress/inspection/new_appointment_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -274,6 +275,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Card(
+        color: Colors.white,
         elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -281,7 +283,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
           onTap: () {
-            print('Item ${index + 1} tapped');
+            Navigator.push(context, MaterialPageRoute(builder: (context) => NewAppointmentScreen()));
             // Add navigation or other action here
           },
           child: Padding(
