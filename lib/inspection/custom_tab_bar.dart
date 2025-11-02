@@ -1,5 +1,6 @@
 // widgets/custom_tab_bar.dart
 import 'package:flutter/material.dart';
+import 'package:revress/app_colors.dart';
 import 'package:revress/inspection/payment/payment_screen.dart';
 import 'package:revress/inspection/receipt/receipt_screen.dart';
 import 'package:revress/inspection/tab_status.dart';
@@ -28,13 +29,15 @@ class CustomTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = MediaQuery.of(context).platformBrightness;
+    final isDarkMode = brightness == Brightness.dark;
     return Column(
       children: [
         // Tab Bar - Horizontally scrollable with SingleChildScrollView
         Container(
           height: 80,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: isDarkMode ? AppColors.darkBackground : Colors.white,
             boxShadow: [
               BoxShadow(
                 color: Colors.black12,

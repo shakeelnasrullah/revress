@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:revress/app_colors.dart';
 
 import 'BodyTypeListItem.dart';
 import 'body_type.dart';
@@ -58,8 +59,12 @@ class _BodyTypeScreenState extends State<BodyTypeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final brightness = MediaQuery.of(context).platformBrightness;
+    final isDarkMode = brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: isDarkMode ? AppColors.darkBackground : Colors.white,
       body: Column(
         children: [
           // Grid View
@@ -95,6 +100,7 @@ class _BodyTypeScreenState extends State<BodyTypeScreen> {
                     child: BodyTypeListItem(
                       product: bodyTypes[index],
                       isSelected: selectedIndex == index,
+                      isDarkMode: isDarkMode,
                     ),
                   );
                 },

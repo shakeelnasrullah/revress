@@ -24,21 +24,26 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final brightness = MediaQuery.of(context).platformBrightness;
+    final isDarkMode = brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: isDarkMode ? Colors.grey[900] : Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
               // Form Fields
-              _buildLabel("Select Car Year"),
+              _buildLabel("Select Car Year", isDarkMode),
               SizedBox(height: 4),
               // Year Dropdown
               _buildDropdown(
                 value: selectedYear,
                 items: years,
                 hint: 'Select Year',
+                isDarkMode: isDarkMode,
                 onChanged: (value) {
                   setState(() {
                     selectedYear = value;
@@ -46,13 +51,14 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
                 },
               ),
               SizedBox(height: 20),
-              _buildLabel("Select Country"),
+              _buildLabel("Select Country", isDarkMode),
               SizedBox(height: 4),
               // Country Dropdown
               _buildDropdown(
                 value: selectedCountry,
                 items: countries,
                 hint: 'Select Country',
+                isDarkMode: isDarkMode,
                 onChanged: (value) {
                   setState(() {
                     selectedCountry = value;
@@ -60,13 +66,14 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
                 },
               ),
               SizedBox(height: 20),
-              _buildLabel("Select Brand Model"),
+              _buildLabel("Select Brand Model", isDarkMode),
               SizedBox(height: 4),
               // Brand Model Dropdown
               _buildDropdown(
                 value: selectedBrandModel,
                 items: brandModels,
                 hint: 'Select Brand Model',
+                isDarkMode: isDarkMode,
                 onChanged: (value) {
                   setState(() {
                     selectedBrandModel = value;
@@ -74,13 +81,14 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
                 },
               ),
               SizedBox(height: 20),
-              _buildLabel("Select Variant"),
+              _buildLabel("Select Variant", isDarkMode),
               SizedBox(height: 4),
               // Variant Dropdown
               _buildDropdown(
                 value: selectedVariant,
                 items: variants,
                 hint: 'Select Variant',
+                isDarkMode: isDarkMode,
                 onChanged: (value) {
                   setState(() {
                     selectedVariant = value;
@@ -91,6 +99,7 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
               // Add some extra space before buttons
               SizedBox(height: 40),
 
+              //Spacer(),
               // Buttons Row
               Row(
                 children: [
@@ -98,7 +107,7 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
                   Expanded(
                     child: _buildRoundedButton(
                       text: 'Reset',
-                      backgroundColor: AppColors.darkGray,
+                      backgroundColor: AppColors.disableDarkBtn,
                       onPressed: () {
                         _resetAll();
                       },
@@ -128,10 +137,10 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
     );
   }
 
-  Widget _buildLabel(String label){
+  Widget _buildLabel(String label, bool isDarkMode){
     return Row(
       children: [
-        Text(label, style: TextStyle(color: Colors.black, fontSize: 16),),
+        Text(label, style: TextStyle(color: isDarkMode ? Colors.white : Colors.black, fontSize: 16),),
         SizedBox(width: 4,),
         Text("*", style: TextStyle(color: Colors.red, fontSize: 16), ),
       ],
@@ -144,18 +153,20 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
     required List<String> items,
     required String hint,
     required Function(String?) onChanged,
+    bool isDarkMode = false,
   }) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: isDarkMode ? Colors.grey[500]! : Colors.black),
+        borderRadius: BorderRadius.circular(4),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: DropdownButton<String>(
           value: value,
           isExpanded: true,
-          dropdownColor: Colors.white,
+          dropdownColor: isDarkMode ? AppColors.darkItemColor :Colors.white,
+          style: TextStyle(color:  isDarkMode ? Colors.grey[400] :AppColors.darkItemColor,),
           underline: SizedBox(), // Remove default underline
           borderRadius: BorderRadius.circular(8),
           items: items.map((String item) {

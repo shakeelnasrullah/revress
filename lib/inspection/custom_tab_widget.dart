@@ -53,11 +53,10 @@ class CustomTabWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Icon with status-based coloring
+
             const SizedBox(height: 6),
             Image.asset(
               _getIcon(tab.status, tab.icon),
-              //color: _getIconColor(tab.status, isActive),
               fit: BoxFit.contain,
               height: 50,
             ),

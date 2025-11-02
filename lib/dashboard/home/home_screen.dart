@@ -9,6 +9,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   final ScrollController _scrollController = ScrollController();
   final double _appBarExpandedHeight = 250.0;
 
@@ -31,14 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final brightness = MediaQuery.of(context).platformBrightness;
+    final isDarkMode = brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: isDarkMode ? Colors.grey[900] : Colors.grey[800],
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
           SliverAppBar(
             expandedHeight: _appBarExpandedHeight,
-            floating: false,
+            floating: true,
             pinned: true,
             snap: false,
             stretch: true,
@@ -86,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 BuildContext context,
                 int index,
                 ) {
-              return _buildCustomCardItem(index);
+              return _buildCustomCardItem(index, isDarkMode);
             }, childCount: 50),
           ),
         ],
@@ -271,11 +276,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildCustomCardItem(int index) {
+  Widget _buildCustomCardItem(int index, bool isDarkMode) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Card(
-        color: Colors.white,
+        color: isDarkMode ? Colors.grey[800] : Colors.white,
         elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -292,27 +297,25 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Circular Avatar with better styling
-                Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.blue.shade200,
-                      width: 2,
-                    ),
-                  ),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.primaries[index % Colors.primaries.length].shade100,
-                    foregroundColor: Colors.primaries[index % Colors.primaries.length].shade800,
-                    child: Text(
-                      '${index + 1}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                Column(
+                  children: [
+                    Container(
+                      height: 60,
+                      //padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+
+                      ),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.red,
+                        //backgroundColor: Colors.primaries[index % Colors.primaries.length].shade100,
+                        //foregroundColor: Colors.primaries[index % Colors.primaries.length].shade800,
+                        child: Image.asset("assets/images/car_logo.png", fit: BoxFit.scaleDown,)
                       ),
                     ),
-                  ),
+                    Image.asset("assets/images/vertical_pin.png", fit: BoxFit.scaleDown, height: 60, width: 60,),
+                  ],
+
                 ),
 
                 SizedBox(width: 16),
@@ -327,7 +330,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
-                          color: Colors.grey[800],
+                          color: isDarkMode ? Colors.white : Colors.grey[800],
                         ),
                       ),
 
@@ -336,7 +339,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         '@username${index + 1}',
                         style: TextStyle(
-                          color: Colors.grey[600],
+                          color: isDarkMode ? Colors.white : Colors.grey[800],
                           fontSize: 14,
                         ),
                       ),
@@ -347,7 +350,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         'This is a detailed description for item number ${index + 1}. '
                             'It can contain more information about the user or content.',
                         style: TextStyle(
-                          color: Colors.grey[700],
+                          color: isDarkMode ? Colors.white : Colors.grey[800],
                           fontSize: 14,
                         ),
                         maxLines: 2,
@@ -364,19 +367,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           Text(
                             '4.${index % 10}',
                             style: TextStyle(
-                              color: Colors.grey[600],
+                              color: isDarkMode ? Colors.white : Colors.grey[600],
                               fontSize: 14,
                             ),
                           ),
 
                           SizedBox(width: 16),
 
-                          Icon(Icons.access_time, color: Colors.grey[500], size: 16),
+                          Icon(Icons.access_time, color: isDarkMode ? Colors.white : Colors.grey[500], size: 16),
                           SizedBox(width: 4),
                           Text(
                             '${index + 1}h ago',
                             style: TextStyle(
-                              color: Colors.grey[600],
+                              color: isDarkMode ? Colors.white : Colors.grey[600],
                               fontSize: 14,
                             ),
                           ),
@@ -385,13 +388,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           Icon(
                             Icons.favorite_border,
-                            color: Colors.grey[500],
+                           color: isDarkMode ? Colors.white : Colors.grey[500],
                             size: 20,
                           ),
                         ],
                       ),
                     ],
                   ),
+                ),
+
+                Icon(
+                  Icons.more_vert,
+                  color: isDarkMode ? Colors.white : Colors.grey[500],
+                  size: 20,
                 ),
               ],
             ),

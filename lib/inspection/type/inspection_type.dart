@@ -12,136 +12,114 @@ class _InspectionTypeScreenState extends State<InspectionTypeScreen> {
 
   @override
   Widget build(BuildContext context) {
-   return Container(
+    final brightness = MediaQuery.of(context).platformBrightness;
+    final isDarkMode = brightness == Brightness.dark;
+
+    return Container(
       padding: const EdgeInsets.all(16),
-      color: Colors.white,
+      color: isDarkMode ? Colors.grey[900] : Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          buildInspectionBtn("Physical Inspection", "For those who have physical problems", "assets/images/physical.png", "physical"),
-          SizedBox(height: 10),
-          buildInspectionBtn("Computerized Inspection", "For those who want computerized inspection", "assets/images/computer.png", "computerized"),
-
-        /*  Card(
-            color: Colors.white,
-            child: Column(
-              children: [
-                Image.asset("assets/images/physical.png"),
-                Text(
-                  "Physical Inspection",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "For those who have physical problems",
-                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
-                ),
-                SizedBox(height: 10),
-              ],
-            ),
+          buildInspectionBtn(
+            "Physical Inspection",
+            "For those who have physical problems",
+            "assets/images/physical.png",
+            "physical",
+            isDarkMode,
           ),
-          Card(
-            color: Colors.white,
-            child: Column(
-              children: [
-                Image.asset("assets/images/computer.png"),
-                Text(
-                  "Computerized Inspection",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "For those who want computerized inspection",
-                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
-                ),
-                SizedBox(height: 10),
-              ],
-            ),
-          ),*/
+          SizedBox(height: 10),
+          buildInspectionBtn(
+            "Computerized Inspection",
+            "For those who want computerized inspection",
+            "assets/images/computer.png",
+            "computerized",
+            isDarkMode,
+          ),
         ],
       ),
     );
   }
-  Widget buildInspectionBtn(String title, String detail, String image, String selectedID){
+
+  Widget buildInspectionBtn(
+    String title,
+    String detail,
+    String image,
+    String selectedID,
+    bool isDarkMode,
+  ) {
     bool isSelected = _selectedVehicleType == selectedID;
 
     return GestureDetector(
-        onTap: (){ setState(() {
+      onTap: () {
+        setState(() {
           _selectedVehicleType = selectedID;
-        });},
-        child:  Stack(
-            children : [
-              AnimatedContainer(
-                duration: Duration(milliseconds: 200),
-                child: Card(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: BorderSide(
-                      color: isSelected ? Colors.blue : Colors.transparent,
-                      width: isSelected ? 2 : 0,
-                    ),
-                  ),
-
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.0),
-                      gradient: isSelected
-                          ? LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.blue.withOpacity(0.1), Colors.white],
-                      )
-                          : null,
-                    ),
-                    child: Column(
-                      children: [
-                        Image.asset(image, fit: BoxFit.fill,),
-                        Text(
-                          title,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          detail,
-                          style: TextStyle(color: Colors.grey[600], fontSize: 14),
-                        ),
-                        SizedBox(height: 10),
-                      ],
-                    ),
-                  ),
+        });
+      },
+      child: Stack(
+        children: [
+          AnimatedContainer(
+            duration: Duration(milliseconds: 200),
+            child: Card(
+              color: isDarkMode ? Colors.grey[800] : Colors.white,
+              elevation: isSelected ? 6.0 : 4.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+                side: BorderSide(
+                  color: isSelected ? Colors.blue : Colors.grey[300]!,
+                  width: isSelected ? 2.5 : 1.0,
                 ),
               ),
-              if (isSelected)
-                Positioned(
-                  top: 8,
-                  right: 8,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      shape: BoxShape.circle,
+
+              child: Container(
+                decoration:BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
+                  color: isSelected ? Colors.blue.withOpacity(0.1) : null,
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Image.asset(image, fit: BoxFit.fill),
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.all(4),
-                      child: Icon(
-                        Icons.check,
-                        color: Colors.white,
-                        size: 16,
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: isDarkMode ? Colors.grey[300] : Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
+                    Text(
+                      detail,
+                      style: TextStyle(
+                        color: isDarkMode ? Colors.grey[500] : Colors.black,
+                        fontSize: 14,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                  ],
                 ),
-            ])
-    );}
-
-
+              ),
+            ),
+          ),
+          if (isSelected)
+            Positioned(
+              top: 8,
+              right: 8,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  shape: BoxShape.circle,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(4),
+                  child: Icon(Icons.check, color: Colors.white, size: 16),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
 }

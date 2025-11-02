@@ -108,24 +108,9 @@ class _TabScreenState extends State<NewAppointmentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     /* appBar: AppBar(
-        title: const Text('New Appointment'),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-      ),*/
       appBar: CustomToolbar(
         title: "My Custom Toolbar",
         backgroundColor: Colors.blue,
-        /*actions: [
-          IconButton(
-            icon: Icon(Icons.search, color: Colors.white),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.more_vert, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],*/
       ),
       body: CustomTabBar(
         tabs: _tabs,

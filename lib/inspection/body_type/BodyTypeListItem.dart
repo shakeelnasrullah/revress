@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:revress/app_colors.dart';
 import 'package:revress/inspection/body_type/body_type.dart';
 
 
@@ -6,11 +7,14 @@ import 'package:revress/inspection/body_type/body_type.dart';
 class BodyTypeListItem extends StatelessWidget {
   final BodyType product;
   final bool isSelected;
+  final bool isDarkMode;
+
 
   const BodyTypeListItem({
     Key? key,
     required this.product,
     this.isSelected = false,
+    required this.isDarkMode,
   }) : super(key: key);
 
   @override
@@ -18,7 +22,7 @@ class BodyTypeListItem extends StatelessWidget {
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
       child: Card(
-        color: isSelected ? Colors.blue[50] : Colors.white,
+        color: isDarkMode ? AppColors.darkItemColor : Colors.white,
         elevation: isSelected ? 6.0 : 4.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
