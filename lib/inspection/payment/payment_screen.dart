@@ -14,8 +14,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = MediaQuery.of(context).platformBrightness;
+    final isDarkMode = brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: isDarkMode ? Colors.grey[900] : Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -27,6 +30,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               "assets/images/mastercard_pay.png",
               Colors.grey[200]!,
               "card",
+              isDarkMode
             ),
             SizedBox(height: 8),
             _buildPaymentBtn(
@@ -35,6 +39,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               "assets/images/apple_pay.png",
               Colors.grey[200]!,
               "apple",
+              isDarkMode
             ),
             SizedBox(height: 8),
             _buildPaymentBtn(
@@ -43,6 +48,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               "assets/images/samsung_pay.png",
               Colors.blue[900]!,
               "samsung",
+              isDarkMode
             ),
             SizedBox(height: 8),
             _buildPaymentBtn(
@@ -51,6 +57,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               "assets/images/google_pay.png",
               Colors.grey[200]!,
               "google",
+              isDarkMode
             ),
             Spacer(),
             Row(
@@ -67,7 +74,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     );
   }
 
-  Widget _buildPaymentBtn(String title, String detail, String image, Color color, String paymentId){
+  Widget _buildPaymentBtn(String title, String detail, String image, Color color, String paymentId, bool isDarkMode){
     bool isSelected = _selectedPaymentMethod == paymentId;
 
     return GestureDetector(
@@ -80,7 +87,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         Duration(milliseconds: 200),
         child: Card(
           elevation: 4,
-          color: Colors.white,
+          color: isDarkMode ? AppColors.darkItemColor : Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
             side: BorderSide(
@@ -130,7 +137,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             Text(
                               title,
                               style: TextStyle(
-                                color: Colors.black,
+                                color: isDarkMode ? Colors.grey[300] : Colors.black,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                               ),
@@ -138,7 +145,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             Text(
                               detail,
                               style: TextStyle(
-                                color: Colors.grey,
+                                color: isDarkMode ? Colors.grey[500] : Colors.black,
                                 fontSize: 14,
                               ),
                             ),

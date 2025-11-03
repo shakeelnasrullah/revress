@@ -31,8 +31,8 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
     return Scaffold(
       backgroundColor: isDarkMode ? Colors.grey[900] : Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20.0),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               // Form Fields
@@ -99,7 +99,7 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
               // Add some extra space before buttons
               SizedBox(height: 40),
 
-              //Spacer(),
+              Spacer(),
               // Buttons Row
               Row(
                 children: [
@@ -156,9 +156,11 @@ class _VehicleDetailScreenState extends State<VehicleDetailScreen> {
     bool isDarkMode = false,
   }) {
     return Container(
+
       decoration: BoxDecoration(
         border: Border.all(color: isDarkMode ? Colors.grey[500]! : Colors.black),
         borderRadius: BorderRadius.circular(4),
+         color: isDarkMode ? Colors.grey[800]! : Colors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),

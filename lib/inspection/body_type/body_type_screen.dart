@@ -64,7 +64,7 @@ class _BodyTypeScreenState extends State<BodyTypeScreen> {
     final isDarkMode = brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDarkMode ? AppColors.darkBackground : Colors.white,
+      backgroundColor: isDarkMode ? Colors.grey[900] : Colors.white,
       body: Column(
         children: [
           // Grid View

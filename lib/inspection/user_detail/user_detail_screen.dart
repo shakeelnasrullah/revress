@@ -52,13 +52,41 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
     "Kahna Nou",
   ];
 
+  DateTime? selectedAppointment;
+  final bool isDarkMode = false;
+
+  // Example booked slots
+  // FIXED: Booked slots with minutes set to 0 to match appointment slots
+  final List<DateTime> bookedSlots = [
+    // Tomorrow 9:00 AM (minutes set to 0)
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1, 9, 0),
+    // Day after tomorrow 2:00 PM (minutes set to 0)
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 2, 14, 0),
+    // In 3 days 5:00 PM (minutes set to 0)
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 3, 17, 0),
+  ];
+
+  // Alternative method to create booked slots
+  List<DateTime> _createBookedSlots() {
+    final now = DateTime.now();
+    return [
+      DateTime(now.year, now.month, now.day + 1, 9, 0),  // Tomorrow 9:00 AM
+      DateTime(now.year, now.month, now.day + 2, 14, 0), // Day after tomorrow 2:00 PM
+      DateTime(now.year, now.month, now.day + 3, 17, 0), // In 3 days 5:00 PM
+    ];
+  }
+
   PhoneNumber number = PhoneNumber(isoCode: 'PK');
   String initialCountry = 'PK';
 
   @override
   Widget build(BuildContext context) {
+
+    final brightness = MediaQuery.of(context).platformBrightness;
+    final isDarkMode = brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: isDarkMode ? AppColors.darkBackground : Colors.white,
       body:  SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
@@ -67,17 +95,18 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
               Padding(padding: EdgeInsets.all(16), child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  _buildLabel("Full Name"),
+                  _buildLabel("Full Name", isDarkMode),
                   genericTextField(_name_controller, "Enter Your Full Name", null),
                   SizedBox(height: 16),
-                  _buildLabel("Phone Number"),
-                  PhoneEditText.showPhoneNumber(_phone_controller, number),
+                  _buildLabel("Phone Number", isDarkMode),
+                  PhoneEditText.showPhoneNumber(_phone_controller, isDarkMode, number),
                   SizedBox(height: 16),
-                  _buildLabel("Province"),
+                  _buildLabel("Province", isDarkMode),
                   buildDropdown(
                     value: selectedProvince,
                     items: provinceNames,
                     hint: 'Select Province',
+                    isDarkMode: isDarkMode,
                     onChanged: (value) {
                       setState(() {
                         selectedProvince = value;
@@ -85,11 +114,12 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
                     },
                   ),
                   SizedBox(height: 16),
-                  _buildLabel("City"),
+                  _buildLabel("City", isDarkMode),
                   buildDropdown(
                     value: selectedCity,
                     items: cityNames,
                     hint: 'Select City',
+                    isDarkMode: isDarkMode,
                     onChanged: (value) {
                       setState(() {
                         selectedCity = value;
@@ -97,11 +127,12 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
                     },
                   ),
                   SizedBox(height: 16),
-                  _buildLabel("Branch"),
+                  _buildLabel("Branch", isDarkMode),
                   buildDropdown(
                     value: selectedBranch,
                     items: branchNames,
                     hint: 'Select Branch',
+                    isDarkMode: isDarkMode,
                     onChanged: (value) {
                       setState(() {
                         selectedBranch = value;
@@ -112,8 +143,9 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
 
                 ],
               ),),
-              Text("Available Slots", style: TextStyle(color: AppColors.primary, fontSize: 16, fontWeight: FontWeight.bold),),
-              buildAppointmentView(),
+              Text("Available Slots", textAlign: TextAlign.start, style: TextStyle(color: isDarkMode ? Colors.grey[300] : AppColors.primary,
+                  fontSize: 16, fontWeight: FontWeight.bold),),
+              buildAppointmentView(isDarkMode),
 
               //SizedBox(height: 10,),
               Padding(
@@ -155,14 +187,14 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
 
 
 
-  Widget _buildLabel(String label) {
+  Widget _buildLabel(String label, bool isDarkMode) {
     return Container(
-      color: Colors.white,
+
       child: Column(
         children: [
           Row(
             children: [
-              Text(label, style: TextStyle(color: Colors.black, fontSize: 14)),
+              Text(label, style: TextStyle(color: isDarkMode ? Colors.grey[400] : Colors.black, fontSize: 14)),
               SizedBox(width: 4),
               Text("*", style: TextStyle(color: Colors.red, fontSize: 14)),
             ],
@@ -172,14 +204,16 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
     );
   }
 
-  Widget buildAppointmentView() {
+  Widget buildAppointmentView(bool isDarkMode) {
     return AppointmentListview(
-      selectedAppointment: _selectedAppointment,
-      onAppointmentSelected: (appointment) {
+      selectedAppointment: selectedAppointment,
+      onAppointmentSelected: (dateTime) {
         setState(() {
-          _selectedAppointment = appointment;
+          selectedAppointment = dateTime;
         });
       },
+      isDarkMode: isDarkMode,
+      bookedSlots: bookedSlots,
     );
   }
 
