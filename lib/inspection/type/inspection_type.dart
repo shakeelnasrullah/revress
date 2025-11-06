@@ -15,28 +15,31 @@ class _InspectionTypeScreenState extends State<InspectionTypeScreen> {
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      color: isDarkMode ? Colors.grey[900] : Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          buildInspectionBtn(
-            "Physical Inspection",
-            "For those who have physical problems",
-            "assets/images/physical.png",
-            "physical",
-            isDarkMode,
-          ),
-          SizedBox(height: 10),
-          buildInspectionBtn(
-            "Computerized Inspection",
-            "For those who want computerized inspection",
-            "assets/images/computer.png",
-            "computerized",
-            isDarkMode,
-          ),
-        ],
+    return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        color: isDarkMode ? Colors.grey[900] : Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            buildInspectionBtn(
+              "Physical Inspection",
+              "For those who have physical problems",
+              "assets/images/physical.png",
+              "physical",
+              isDarkMode,
+            ),
+            SizedBox(height: 10),
+            buildInspectionBtn(
+              "Computerized Inspection",
+              "For those who want computerized inspection",
+              "assets/images/computer.png",
+              "computerized",
+              isDarkMode,
+            ),
+          ],
+        ),
       ),
     );
   }

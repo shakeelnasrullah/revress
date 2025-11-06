@@ -59,47 +59,65 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
   // FIXED: Booked slots with minutes set to 0 to match appointment slots
   final List<DateTime> bookedSlots = [
     // Tomorrow 9:00 AM (minutes set to 0)
-    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1, 9, 0),
+    DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day + 1,
+      9,
+      0,
+    ),
     // Day after tomorrow 2:00 PM (minutes set to 0)
-    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 2, 14, 0),
+    DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day + 2,
+      14,
+      0,
+    ),
     // In 3 days 5:00 PM (minutes set to 0)
-    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 3, 17, 0),
+    DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day + 3,
+      17,
+      0,
+    ),
   ];
-
-  // Alternative method to create booked slots
-  List<DateTime> _createBookedSlots() {
-    final now = DateTime.now();
-    return [
-      DateTime(now.year, now.month, now.day + 1, 9, 0),  // Tomorrow 9:00 AM
-      DateTime(now.year, now.month, now.day + 2, 14, 0), // Day after tomorrow 2:00 PM
-      DateTime(now.year, now.month, now.day + 3, 17, 0), // In 3 days 5:00 PM
-    ];
-  }
 
   PhoneNumber number = PhoneNumber(isoCode: 'PK');
   String initialCountry = 'PK';
 
   @override
   Widget build(BuildContext context) {
-
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
 
     return Scaffold(
       backgroundColor: isDarkMode ? AppColors.darkBackground : Colors.white,
-      body:  SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(padding: EdgeInsets.all(16), child: Column(
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   _buildLabel("Full Name", isDarkMode),
-                  genericTextField(_name_controller, "Enter Your Full Name", null),
+                  genericTextField(
+                    _name_controller,
+                    "Enter Your Full Name",
+                    null,
+                    isDarkMode,
+                  ),
                   SizedBox(height: 16),
                   _buildLabel("Phone Number", isDarkMode),
-                  PhoneEditText.showPhoneNumber(_phone_controller, isDarkMode, number),
+                  PhoneEditText.showPhoneNumber(
+                    _phone_controller,
+                    isDarkMode,
+                    number,
+                  ),
                   SizedBox(height: 16),
                   _buildLabel("Province", isDarkMode),
                   buildDropdown(
@@ -140,61 +158,65 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
                     },
                   ),
                   SizedBox(height: 16),
-
                 ],
-              ),),
-              Text("Available Slots", textAlign: TextAlign.start, style: TextStyle(color: isDarkMode ? Colors.grey[300] : AppColors.primary,
-                  fontSize: 16, fontWeight: FontWeight.bold),),
-              buildAppointmentView(isDarkMode),
-
-              //SizedBox(height: 10,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                child: Row(
-                  children: [
-                    // Reset Button
-                    Expanded(
-                      child: buildRoundedButton(
-                        text: 'Reset',
-                        backgroundColor: AppColors.darkGray,
-                        onPressed: () {
-
-                        },
-                      ),
-                    ),
-                    SizedBox(width: 15),
-
-                    // Submit Button
-                    Expanded(
-                      child: buildRoundedButton(
-                        text: 'Submit',
-                        backgroundColor: AppColors.secondary,
-                        onPressed: () {
-
-                        },
-                      ),
-                    ),
-                  ],
-                ),
               ),
-            ],
-          ),
-        ),
+            ),
+            Text(
+              "Available Slots",
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                color: isDarkMode ? Colors.grey[300] : AppColors.primary,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            buildAppointmentView(isDarkMode),
 
+            //SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Row(
+                children: [
+                  // Reset Button
+                  Expanded(
+                    child: buildRoundedButton(
+                      text: 'Reset',
+                      backgroundColor: AppColors.darkGray,
+                      onPressed: () {},
+                    ),
+                  ),
+                  SizedBox(width: 15),
+
+                  // Submit Button
+                  Expanded(
+                    child: buildRoundedButton(
+                      text: 'Submit',
+                      backgroundColor: AppColors.secondary,
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-
-
-
   Widget _buildLabel(String label, bool isDarkMode) {
     return Container(
-
       child: Column(
         children: [
           Row(
             children: [
-              Text(label, style: TextStyle(color: isDarkMode ? Colors.grey[400] : Colors.black, fontSize: 14)),
+              Text(
+                label,
+                style: TextStyle(
+                  color: isDarkMode ? Colors.grey[400] : Colors.black,
+                  fontSize: 14,
+                ),
+              ),
               SizedBox(width: 4),
               Text("*", style: TextStyle(color: Colors.red, fontSize: 14)),
             ],
@@ -216,6 +238,4 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
       bookedSlots: bookedSlots,
     );
   }
-
-
 }

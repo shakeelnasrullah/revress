@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:revress/inspection/new_appointment_screen.dart';
 
+import '../../inspection/user_detail/dummy_view.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -30,14 +32,24 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {}); // Trigger rebuild for animations
   }
 
+  final Gradient blueGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xFF3A3A3A), // Orange
+      Color(0xFF1D1D1D), // Light Orange
+    ],
+  );
+
   @override
   Widget build(BuildContext context) {
-
-    final brightness = MediaQuery.of(context).platformBrightness;
+    final brightness = MediaQuery
+        .of(context)
+        .platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDarkMode ? Colors.grey[900] : Colors.grey[800],
+      backgroundColor: isDarkMode ? Colors.grey[900] : Colors.white,
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
@@ -50,7 +62,8 @@ class _HomeScreenState extends State<HomeScreen> {
             flexibleSpace: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 final double visibleHeight = constraints.maxHeight;
-                final double collapseFraction = 1 - (visibleHeight / _appBarExpandedHeight);
+                final double collapseFraction = 1 -
+                    (visibleHeight / _appBarExpandedHeight);
                 final double opacity = 1 - collapseFraction.clamp(0.0, 1.0);
 
                 return Stack(
@@ -67,7 +80,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       top: 0,
                       left: 0,
                       right: 0,
-                      bottom: 60, // Space for the toolbar at bottom
+                      bottom: 60,
+                      // Space for the toolbar at bottom
                       child: Opacity(
                         opacity: opacity,
                         child: _buildAppBarContent(),
@@ -87,10 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           SliverList(
-            delegate: SliverChildBuilderDelegate((
-                BuildContext context,
-                int index,
-                ) {
+            delegate: SliverChildBuilderDelegate((BuildContext context,
+                int index,) {
               return _buildCustomCardItem(index, isDarkMode);
             }, childCount: 50),
           ),
@@ -137,7 +149,8 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               CircleAvatar(
                 radius: 30,
-                backgroundImage: NetworkImage('https://picsum.photos/100?portrait'),
+                backgroundImage: NetworkImage(
+                    'https://picsum.photos/100?portrait'),
               ),
               SizedBox(width: 16),
               Expanded(
@@ -240,14 +253,16 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search, color: Colors.black),
                 hintText: "Search inspection here ..",
-                hintStyle: TextStyle(color: Colors.white.withAlpha((255 * 0.7).round())),
+                hintStyle: TextStyle(
+                    color: Colors.white.withAlpha((255 * 0.7).round())),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 filled: true,
                 fillColor: Colors.white,
-                contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                contentPadding: EdgeInsets.symmetric(
+                    vertical: 12, horizontal: 16),
               ),
               style: TextStyle(color: Colors.black),
             ),
@@ -278,135 +293,147 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildCustomCardItem(int index, bool isDarkMode) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Card(
-        color: isDarkMode ? Colors.grey[800] : Colors.white,
-        elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(16),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      child: Stack(
+          children: [
+          InkWell(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => NewAppointmentScreen()));
-            // Add navigation or other action here
-          },
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    Navigator.push(context, MaterialPageRoute(builder: (context) => NewAppointmentScreen()));},
+
+      child: Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Container(
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          gradient: blueGradient
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Circular Avatar with better styling
+            Column(
               children: [
-                // Circular Avatar with better styling
-                Column(
-                  children: [
-                    Container(
-                      height: 60,
-                      //padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
+                Container(
+                  height: 50,
+                  width: 50,
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red
 
-                      ),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.red,
-                        //backgroundColor: Colors.primaries[index % Colors.primaries.length].shade100,
-                        //foregroundColor: Colors.primaries[index % Colors.primaries.length].shade800,
-                        child: Image.asset("assets/images/car_logo.png", fit: BoxFit.scaleDown,)
-                      ),
-                    ),
-                    Image.asset("assets/images/vertical_pin.png", fit: BoxFit.scaleDown, height: 60, width: 60,),
-                  ],
-
+                  ),
+                  child: Image.asset(
+                    "assets/images/car_logo.png", fit: BoxFit.contain,),
                 ),
+                SizedBox(height: 10),
+                Image.asset(
+                  "assets/images/vertical_pin.png", fit: BoxFit.scaleDown,
+                  height: 60,
+                  width: 60,),
+              ],
 
-                SizedBox(width: 16),
+            ),
 
-                // Content section
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            SizedBox(width: 16),
+
+            // Content section
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'User Name ${index + 1}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: isDarkMode ? Colors.white : Colors.grey[800],
+                    ),
+                  ),
+
+                  SizedBox(height: 4),
+
+                  Text(
+                    '@username${index + 1}',
+                    style: TextStyle(
+                      color: isDarkMode ? Colors.white : Colors.grey[800],
+                      fontSize: 14,
+                    ),
+                  ),
+
+                  SizedBox(height: 8),
+
+                  Text(
+                    'This is a detailed description for item number ${index +
+                        1}. '
+                        'It can contain more information about the user or content.',
+                    style: TextStyle(
+                      color: isDarkMode ? Colors.white : Colors.grey[800],
+                      fontSize: 14,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+
+                  SizedBox(height: 12),
+
+                  // Additional info or actions
+                  Row(
                     children: [
+                      Icon(Icons.star, color: Colors.amber, size: 16),
+                      SizedBox(width: 4),
                       Text(
-                        'User Name ${index + 1}',
+                        '4.${index % 10}',
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: isDarkMode ? Colors.white : Colors.grey[800],
-                        ),
-                      ),
-
-                      SizedBox(height: 4),
-
-                      Text(
-                        '@username${index + 1}',
-                        style: TextStyle(
-                          color: isDarkMode ? Colors.white : Colors.grey[800],
+                          color: isDarkMode ? Colors.white : Colors.grey[600],
                           fontSize: 14,
                         ),
                       ),
 
-                      SizedBox(height: 8),
+                      SizedBox(width: 16),
 
+                      Icon(Icons.access_time,
+                          color: isDarkMode ? Colors.white : Colors.grey[500],
+                          size: 16),
+                      SizedBox(width: 4),
                       Text(
-                        'This is a detailed description for item number ${index + 1}. '
-                            'It can contain more information about the user or content.',
+                        '${index + 1}h ago',
                         style: TextStyle(
-                          color: isDarkMode ? Colors.white : Colors.grey[800],
+                          color: isDarkMode ? Colors.white : Colors.grey[600],
                           fontSize: 14,
                         ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
                       ),
 
-                      SizedBox(height: 12),
+                      Spacer(),
 
-                      // Additional info or actions
-                      Row(
-                        children: [
-                          Icon(Icons.star, color: Colors.amber, size: 16),
-                          SizedBox(width: 4),
-                          Text(
-                            '4.${index % 10}',
-                            style: TextStyle(
-                              color: isDarkMode ? Colors.white : Colors.grey[600],
-                              fontSize: 14,
-                            ),
-                          ),
-
-                          SizedBox(width: 16),
-
-                          Icon(Icons.access_time, color: isDarkMode ? Colors.white : Colors.grey[500], size: 16),
-                          SizedBox(width: 4),
-                          Text(
-                            '${index + 1}h ago',
-                            style: TextStyle(
-                              color: isDarkMode ? Colors.white : Colors.grey[600],
-                              fontSize: 14,
-                            ),
-                          ),
-
-                          Spacer(),
-
-                          Icon(
-                            Icons.favorite_border,
-                           color: isDarkMode ? Colors.white : Colors.grey[500],
-                            size: 20,
-                          ),
-                        ],
+                      Icon(
+                        Icons.favorite_border,
+                        color: isDarkMode ? Colors.white : Colors.grey[500],
+                        size: 20,
                       ),
                     ],
                   ),
-                ),
-
-                Icon(
-                  Icons.more_vert,
-                  color: isDarkMode ? Colors.white : Colors.grey[500],
-                  size: 20,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+
+            Icon(
+              Icons.more_vert,
+              color: isDarkMode ? Colors.white : Colors.grey[500],
+              size: 20,
+            ),
+          ],
         ),
       ),
+    ),
+    ),
+    Positioned(bottom: 3, right: 3, top: -8,
+    child: Image.asset("assets/images/tire.png", fit: BoxFit.contain,))
+    ]
+    ),
     );
   }
 }

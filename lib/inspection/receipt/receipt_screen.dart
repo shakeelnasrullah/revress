@@ -24,7 +24,7 @@ class ReceiptScreen extends StatelessWidget {
                 _buildReceiptCard(),
                 Positioned(top: 0, left: 0, right: 0,
                     child: Center(child: Container( width: 80,
-                      padding: EdgeInsets.all(4),
+                      padding: EdgeInsets.all(8),
                       height: 80,
                       decoration: BoxDecoration(
                         color: Colors.red,

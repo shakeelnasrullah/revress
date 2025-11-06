@@ -15,17 +15,20 @@ class _VehicleTypeScreenState extends State<VehicleTypeScreen> {
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      color: isDarkMode ? Colors.grey[900] : Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
+    return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        color: isDarkMode ? Colors.grey[900] : Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
 
-          buildInspectionBtn("Own Car", "Get your personal car inspection", "assets/images/own_car.png", "own", isDarkMode),
-          SizedBox(height: 10),
-          buildInspectionBtn("Seller's Car", "Get someone's car inspection", "assets/images/seller_car.png", "seller", isDarkMode),
-        ],
+            buildInspectionBtn("Own Car", "Get your personal car inspection", "assets/images/own_car.png", "own", isDarkMode),
+            SizedBox(height: 10),
+            buildInspectionBtn("Seller's Car", "Get someone's car inspection", "assets/images/seller_car.png", "seller", isDarkMode),
+          ],
+        ),
       ),
     );
   }

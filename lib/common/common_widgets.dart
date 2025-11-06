@@ -11,12 +11,14 @@ Widget requireTextLabel(String name) {
   );
 }
 
-Widget genericTextField(TextEditingController controller, String? hintText, Icon? icon,){
+Widget genericTextField(TextEditingController controller, String? hintText, Icon? icon, bool isDarkMode){
   return
     TextField(
       controller: controller,
       keyboardType: TextInputType.emailAddress,
+      style: TextStyle(color: isDarkMode ? Colors.white : Colors.black),
       decoration: InputDecoration(
+
         prefixIcon: icon,
         hintText: hintText,
         hintStyle: TextStyle(color: AppColors.lightGray),

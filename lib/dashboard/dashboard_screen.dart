@@ -2,6 +2,9 @@ import "package:flutter/material.dart";
 import 'package:circle_nav_bar/circle_nav_bar.dart.';
 import 'package:revress/app_colors.dart';
 import 'package:revress/dashboard/home/home_screen.dart';
+import 'package:revress/inspection/new_appointment_screen.dart';
+
+import '../inspection/user_detail/dummy_view.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -132,14 +135,14 @@ class _DashboardScreenState extends State<DashboardScreen>
           width: double.infinity,
           height: double.infinity,
           color: Colors.white,
-          child: Center(child: Text("Schedule Screen", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),)),
+          child: NewAppointmentScreen(),
         ),
 
         Container(
           width: double.infinity,
           height: double.infinity,
           color: Colors.white,
-          child: Center(child: Text("Offers Screen", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),)),
+          child: DummyView(),
         ),
         Container(
           width: double.infinity,

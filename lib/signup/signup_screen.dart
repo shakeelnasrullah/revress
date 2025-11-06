@@ -31,8 +31,12 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final brightness = MediaQuery.of(context).platformBrightness;
+    final isDarkMode = brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: isDarkMode ? AppColors.darkBackground : Colors.white,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -79,15 +83,15 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           SizedBox(height: 20),
                          // requireTextLabel("Email Address"),
-                          genericTextField(_user_name_controller, "Enter Your Username",  Icon(Icons.person)),
+                          genericTextField(_user_name_controller, "Enter Your Username",  Icon(Icons.person), isDarkMode),
                           SizedBox(height: 16),
 
                           showPhoneNumber(_phone_controller, number),
 
                           SizedBox(height: 16),
-                          genericTextField(_email_controller, "Enter Your Email", Icon(Icons.mail)),
+                          genericTextField(_email_controller, "Enter Your Email", Icon(Icons.mail), isDarkMode),
                           SizedBox(height: 16),
-                          genericTextField(_password_controller, "Enter Your Password", Icon(Icons.lock)),
+                          genericTextField(_password_controller, "Enter Your Password", Icon(Icons.lock), isDarkMode),
                           SizedBox(height: 16),
                           //requireTextLabel("Password"),
                           SizedBox(height: 30),
